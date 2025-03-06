@@ -1,4 +1,4 @@
-# 最佳VPN推荐列表 | 3月4日21.1M/S|免费SSR/Clash/V2ray/Shadowrocket免费节点订阅分享  更新时间 2025-03-04 10:23:47
+# 最佳VPN推荐列表 | 3月6日21.1M/S|免费SSR/Shadowrocket/V2ray/Clash免费节点订阅分享  更新时间 2025-03-06 11:13:35
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://topvpnlist.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://topvpnlist.github.io/uploads/2025/03/0-20250304.yaml
-- https://topvpnlist.github.io/uploads/2025/03/1-20250304.yaml
-- https://topvpnlist.github.io/uploads/2025/03/2-20250304.yaml
-- https://topvpnlist.github.io/uploads/2025/03/3-20250304.yaml
-- https://topvpnlist.github.io/uploads/2025/03/4-20250304.yaml
+- https://topvpnlist.github.io/uploads/2025/03/0-20250306.yaml
+- https://topvpnlist.github.io/uploads/2025/03/1-20250306.yaml
+- https://topvpnlist.github.io/uploads/2025/03/2-20250306.yaml
+- https://topvpnlist.github.io/uploads/2025/03/3-20250306.yaml
+- https://topvpnlist.github.io/uploads/2025/03/4-20250306.yaml
 
 ### V2ray订阅链接
 
-- https://topvpnlist.github.io/uploads/2025/03/0-20250304.txt
-- https://topvpnlist.github.io/uploads/2025/03/1-20250304.txt
-- https://topvpnlist.github.io/uploads/2025/03/2-20250304.txt
-- https://topvpnlist.github.io/uploads/2025/03/3-20250304.txt
-- https://topvpnlist.github.io/uploads/2025/03/4-20250304.txt
+- https://topvpnlist.github.io/uploads/2025/03/0-20250306.txt
+- https://topvpnlist.github.io/uploads/2025/03/1-20250306.txt
+- https://topvpnlist.github.io/uploads/2025/03/2-20250306.txt
+- https://topvpnlist.github.io/uploads/2025/03/3-20250306.txt
+- https://topvpnlist.github.io/uploads/2025/03/4-20250306.txt
 
 ### Sing-box订阅链接
 
-- https://topvpnlist.github.io/uploads/2025/03/20250304.json
+- https://topvpnlist.github.io/uploads/2025/03/20250306.json
 
 ## 更多clash节点订阅 ：
 
