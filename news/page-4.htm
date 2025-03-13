@@ -2,22 +2,18 @@
 <html class="no-js" lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://topvpnlist.github.io/news/article-71280.htm" />
+        <link rel="canonical" href="https://topvpnlist.github.io/news/page-4.htm" />
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>测试es from size error，from + size must be less than or equal to: [10000]异常问题</title>
-        <meta name="description" content="测试案例 1，查询第三页每页3334 { &nbsp;&nbsp;&nbsp;&nbsp;"page":3, &nbsp;&nbsp;&nbsp;&nbsp;"size":3334 } 2，查询第一页" />
+    <title>新闻资讯 - 最佳VPN推荐列表 订阅机场节点中文站 - 第3页</title>
         <link rel="icon" href="/assets/website/img/v2rayngnode/favicon.ico" type="image/x-icon"/>
 
     <meta name="author" content="最佳VPN推荐列表 订阅机场节点中文站">
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://topvpnlist.github.io/news/article-71280.htm" />
+    <meta property="og:type" content="webpage" />
+    <meta property="og:url" content="https://topvpnlist.github.io/news/page-4.htm" />
     <meta property="og:site_name" content="最佳VPN推荐列表 订阅机场节点中文站" />
-    <meta property="og:title" content="测试es from size error，from + size must be less than or equal to: [10000]异常问题" />
-    <meta property="og:image" content="https://topvpnlist.github.io/uploads/20241110-1/8e7a4a366fabb6ec85658c3e7678bb1c.webp" />
-        <meta property="og:release_date" content="2025-03-10T04:38:08" />
-    <meta property="og:updated_time" content="2025-03-10T04:38:08" />
-        <meta property="og:description" content="测试案例 1，查询第三页每页3334 { &nbsp;&nbsp;&nbsp;&nbsp;"page":3, &nbsp;&nbsp;&nbsp;&nbsp;"size":3334 } 2，查询第一页" />
+    <meta property="og:title" content="新闻资讯 - 最佳VPN推荐列表 订阅机场节点中文站 - 第3页" />
+    <meta property="og:image" content="/assets/website/img/v2rayngnode/favicon.ico" />
         
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,7 +24,7 @@
     <meta name="robots" content="max-image-preview:large" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="测试es from size error，from + size must be less than or equal to: [10000]异常问题">
+    <meta name="apple-mobile-web-app-title" content="新闻资讯 - 最佳VPN推荐列表 订阅机场节点中文站 - 第3页">
     <meta name="format-detection" content="telephone=no">
 
     <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
@@ -71,7 +67,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="detail">
+<body data-page="category">
         <div id="preloader"></div>
     <header class="header-two">
         <!-- header-area start -->
@@ -151,12 +147,11 @@
                     <div class="breadcrumb">
                         <div class="bread-inner">
                             <div class="section-headline white-headline">
-                                <h1>测试es from size error，from + size must be less than or equal to: [10000]异常问题</h1>
+                                <h1>新闻资讯</h1>
                             </div>
                             <ul class="breadcrumb-bg">
                                 <li class="home-bread"><a href="/">首页</a></li>
-                                <li class="home-bread"><a href="/news/">新闻资讯</a></li>
-                                <li>正文</li>
+                                <li>新闻资讯</li>
                             </ul>
                         </div>
                     </div>
@@ -170,13 +165,42 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
-                  				  				  				<div id="content_views" class="htmledit_views"> <h3>测试案例</h3> <p>1，查询第三页每页3334</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":3,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":3334<br /> }</p> <p>2，查询第一页，每页100001</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":1,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":100001<br /> }</p> <p>3，查询第26页，每页200条</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":26,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":200<br /> }</p> <p>以上查询都会报异常。</p> <h3>控制方案</h3> <p>如何控制发生异常，常见如</p> <p>控制每页数量不大于10000，但是如情况1，3还是会发生异常。</p> <p>1，可能会问，es默认最大查询量10000，每页小于10000啊。但是es分页，会首先取到所有数据，再分页</p> <p>总量3*3334和26*200，总量都大于10000，所以异常。</p> <p>2，虽然实际情况每页不会3334这么大，会像第3种，每页会查询200，然后前端对20条数据再次分页，当翻页总量大于200，后台es才会查询下一页。实际的操作也不会翻这么多页（前端分页200/size*26）。但是还是存在异常的可能性。以上两种只是控制</p> <p>每页数据量10000以内，不能避免发生异常的可能性。</p> <p>3，控制查询总量，有没有意义，比如我只限制查询总量5000条或者10000条</p> <p>我觉得没意义，首先比如查询到100万条数据，返回总量肯定100万，你告诉查询5000条或者10000条肯定是错的；其次你也没法保证查询的总量是5000或1万。</p> <p>推荐：使用search_after进行分页，参考：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.csdn.net/console/editor/html/106314361"  rel="nofollow">https://mp.csdn.net/console/editor/html/106314361</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/zzh920625/article/details/84593590"  rel="nofollow">https://blog.csdn.net/zzh920625/article/details/84593590</a></p> <h3>代码如下</h3> <pre><code> @Override   public Rpage&lt;ResShopProductExtensionInfoDataVO&gt; selectList(ReqShopProductExtensionInfoSearchVO req) {     try {       SearchRequest searchRequest = new SearchRequest(EsOperateTables.SHOP_PRODUCT_EXTENSION_INFO.getAlias());       SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();       List&lt;String&gt; fields = Arrays.stream(ResShopProductExtensionInfoVO.class.getDeclaredFields())           /*将类属性名转为es中带下划线的字段名*/           .map(field -&gt; BizStringUtils.humpToLine(field.getName()))           .collect(Collectors.toList());       sourceBuilder.fetchSource(fields.toArray(new String[fields.size()]), null);       BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();       ShopProductExtensionInfoConverter.setSomeCondition(req, sourceBuilder, boolQueryBuilder);       sourceBuilder.size(req.getSize() &gt; 10000 ? 10000 : req.getSize());       sourceBuilder.from((req.getPage() - 1) * req.getSize());       searchRequest.source(sourceBuilder);       log.info("terms查询DSL语句：" + searchRequest.toString());       SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);       long totalHits = 0L;       if (searchResponse != null) {         totalHits = searchResponse.getHits().getTotalHits();       }       long maxCount = new Long(ConstantsUtils.QueryPartams.MAX_RESULT_COUNT).intValue();//100000       long totalCount = totalHits;       totalHits = totalHits &lt;= maxCount ? totalHits : maxCount;       List&lt;Map&lt;String, Object&gt;&gt; mapList = Lists.newArrayListWithCapacity(searchResponse.getHits().getHits().length);//每页200实际查询的量       Arrays.stream(searchResponse.getHits().getHits()).forEach(hit -&gt; mapList.add(hit.getSourceAsMap()));       YhPageBase page = new YhPageBase(mapList, totalHits, req.getSize().longValue(), req.getPage().longValue());       List&lt;ResShopProductExtensionInfoVO&gt; resList = new ArrayList&lt;&gt;();       if (CollectionUtils.isNotEmpty(page.getList())) {         resList = JSONObject.parseArray(JSONObject.toJSONString(page.getList()), ResShopProductExtensionInfoVO.class);       }       Page rpage = new Page();       rpage.setTotalNum((int) totalCount);//总量       rpage.setPageSize(req.getSize());       rpage.setPageNo(req.getPage());       rpage.setResult(adapter(resList, req));//每页实际查询量       return Rpage.success(rpage);     } catch (Exception e) {       log.error("查询出单方式配置es信息出错", e);     }     return Rpage.success(new Page&lt;&gt;());   }</code></pre> </div> 			                <div class="clearfix"></div>
-                <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-70621.htm">动物医院公示栏图片高清（动物医院宣传海报）</a></p>
-                                        <p>下一个：<a href="/news/article-71281.htm">1688一键铺货到拼多多怎么赚钱（1688一键铺货到拼多多手机版）</a></p>
-                                    </div>
+                    <div class="xcblog-blog-list">
+                                                <div class="row item xcblog-blog-item" data-date="2025-02-26">
+                            <div class="col-md-3">
+                                <a href="/news/article-63677.htm" class="xcblog-blog-url">
+                                    <img src="/uploads/20241110-1/95c3617cb0d721f959364eda0a28c65c.webp" alt="宠物粮食价格 宠物粮食价格表">
+                                </a>
+                            </div>
+                            <!-- column end -->
+                            <div class="col-md-9">
+                                <div class="about-content">
+                                    <a href="/news/article-63677.htm" class="xcblog-blog-url">
+                                        <h3 class="xcblog-blog-title">宠物粮食价格 宠物粮食价格表</h3>
+                                    </a>
+                                    <p>摘要：       大家好，今天小编关注到一个比较有意思的话题，就是关于宠物粮食价格的问题，于是小编就整理了5个相关介绍宠物粮食价格的解答，让我们一起看看吧。出去玩给宠物放多少粮食？宠物粮食哪里买？幼</p>
                                 </div>
+                            </div>
+                        </div>
+                                                <div class="row item xcblog-blog-item" data-date="2025-02-26">
+                            <div class="col-md-3">
+                                <a href="/news/article-63676.htm" class="xcblog-blog-url">
+                                    <img src="/uploads/20241110-1/0b471e8182cd6aeffb2d5f0dd505c1bb.webp" alt="动物疫苗周期多久打一次最好（动物疫苗周期多久打一次最好呢）">
+                                </a>
+                            </div>
+                            <!-- column end -->
+                            <div class="col-md-9">
+                                <div class="about-content">
+                                    <a href="/news/article-63676.htm" class="xcblog-blog-url">
+                                        <h3 class="xcblog-blog-title">动物疫苗周期多久打一次最好（动物疫苗周期多久打一次最好呢）</h3>
+                                    </a>
+                                    <p>摘要：       今天给各位分享动物疫苗周期多久打一次最好的知识，其中也会对动物疫苗周期多久打一次最好呢进行解释，如果能碰巧解决你现在面临的问题，别忘了关注本站，现在开始吧！本文目录一览：1、狗狗.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <ul class="pagination"><li><a href="/news/page-3.htm">&laquo;</a></li> <li><a href="/news/">1</a></li><li><a href="/news/page-2.htm">2</a></li><li><a href="/news/page-3.htm">3</a></li><li class="active"><span>4</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
+                </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
     <div class="panel-heading">
@@ -184,16 +208,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-69321.htm" title="springboot简单实现redis商品秒杀功能，成功解决商品超售问题">springboot简单实现redis商品秒杀功能，成功解决商品超售问题</a></li>
-                        <li class="py-2"><a href="/news/article-68028.htm" title="领养宠物协议书范本图片模板 领养宠物协议书范本图片模板大全">领养宠物协议书范本图片模板 领养宠物协议书范本图片模板大全</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-3-8-free-high-speed-nodes.htm" title="最佳VPN推荐列表 | 3月8日21.7M/S|免费Shadowrocket/Clash/V2ray/SSR免费节点订阅分享">最佳VPN推荐列表 | 3月8日21.7M/S|免费Shadowrocket/Clash/V2ray/SSR免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-2-26-free-subscribe-node.htm" title="最佳VPN推荐列表 | 2月26日18.9M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享">最佳VPN推荐列表 | 2月26日18.9M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-69968.htm" title="动物疫苗的种类及使用方法有哪些英语翻译（动物疫苗的种类及使用方法有哪些英语翻译成中文）">动物疫苗的种类及使用方法有哪些英语翻译（动物疫苗的种类及使用方法有哪些英语翻译成中文）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-5-free-v2ray.htm" title="最佳VPN推荐列表 | 3月5日22.2M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享">最佳VPN推荐列表 | 3月5日22.2M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-66763.htm" title="通过代码解释什么是API，什么是SDK？_在线工具">通过代码解释什么是API，什么是SDK？_在线工具</a></li>
-                        <li class="py-2"><a href="/news/article-66762.htm" title="RequestBody多个参数Map实现以及前端json传参方式">RequestBody多个参数Map实现以及前端json传参方式</a></li>
-                        <li class="py-2"><a href="/news/article-68670.htm" title="人和动物的狂犬疫苗是一样的吗（人和动物的狂犬疫苗是一样的吗图片）">人和动物的狂犬疫苗是一样的吗（人和动物的狂犬疫苗是一样的吗图片）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-2-free-v2ray-subscribe.htm" title="最佳VPN推荐列表 | 3月2日22.5M/S|免费V2ray/Shadowrocket/Clash/SSR免费节点订阅分享">最佳VPN推荐列表 | 3月2日22.5M/S|免费V2ray/Shadowrocket/Clash/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-free-v2ray.htm" title="最佳VPN推荐列表 | 3月12日22M/S|免费SSR/V2ray/Shadowrocket/Clash免费节点订阅分享">最佳VPN推荐列表 | 3月12日22M/S|免费SSR/V2ray/Shadowrocket/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-node-subscribe-links.htm" title="最佳VPN推荐列表 | 3月13日22.7M/S|免费V2ray/Shadowrocket/SSR/Clash免费节点订阅分享">最佳VPN推荐列表 | 3月13日22.7M/S|免费V2ray/Shadowrocket/SSR/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-free-v2ray.htm" title="最佳VPN推荐列表 | 3月7日22.7M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">最佳VPN推荐列表 | 3月7日22.7M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-70621.htm" title="动物医院公示栏图片高清（动物医院宣传海报）">动物医院公示栏图片高清（动物医院宣传海报）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-28-node-share.htm" title="最佳VPN推荐列表 | 2月28日19.4M/S|免费Shadowrocket/V2ray/SSR/Clash免费节点订阅分享">最佳VPN推荐列表 | 2月28日19.4M/S|免费Shadowrocket/V2ray/SSR/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-63677.htm" title="宠物粮食价格 宠物粮食价格表">宠物粮食价格 宠物粮食价格表</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-free-v2ray.htm" title="最佳VPN推荐列表 | 3月10日21.8M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享">最佳VPN推荐列表 | 3月10日21.8M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-69321.htm" title="springboot简单实现redis商品秒杀功能，成功解决商品超售问题">springboot简单实现redis商品秒杀功能，成功解决商品超售问题</a></li>
+                        <li class="py-2"><a href="/news/article-73262.htm" title="对进程、线程和协程的理解以及它们的区别">对进程、线程和协程的理解以及它们的区别</a></li>
                     </ul>
     </div>
 </div>
@@ -205,7 +229,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
