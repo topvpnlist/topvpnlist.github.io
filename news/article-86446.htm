@@ -1,0 +1,279 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://topvpnlist.github.io/news/article-86446.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Kafka如何保证消息的可靠性？</title>
+        <meta name="description" content="Kafka分布式，高可用存储架构 总所周知，Kafka是一个分布式的、可分区的、可复制的消息系统。 也就是说一个topic中的消息是放在多个partition上的，可是当一台机器宕机后不就会导致部分消" />
+        <link rel="icon" href="/assets/website/img/v2rayngnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="最佳VPN推荐列表 订阅机场节点中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://topvpnlist.github.io/news/article-86446.htm" />
+    <meta property="og:site_name" content="最佳VPN推荐列表 订阅机场节点中文站" />
+    <meta property="og:title" content="Kafka如何保证消息的可靠性？" />
+    <meta property="og:image" content="https://topvpnlist.github.io/uploads/20241110-1/8e7a4a366fabb6ec85658c3e7678bb1c.webp" />
+        <meta property="og:release_date" content="2025-04-01T09:50:50" />
+    <meta property="og:updated_time" content="2025-04-01T09:50:50" />
+        <meta property="og:description" content="Kafka分布式，高可用存储架构 总所周知，Kafka是一个分布式的、可分区的、可复制的消息系统。 也就是说一个topic中的消息是放在多个partition上的，可是当一台机器宕机后不就会导致部分消" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Kafka如何保证消息的可靠性？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/bootstrap.min.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/owl.transitions.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/meanmenu.min.css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/icon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/flaticon.css">
+    <!-- magnific css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/magnific.min.css">
+    <!-- venobox css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/venobox.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/responsive.css">
+    <!-- modernizr css -->
+    <script src="/assets/website/js/frontend/v2rayngnode/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2E3PKEC98X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2E3PKEC98X');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <div id="preloader"></div>
+    <header class="header-two">
+        <!-- header-area start -->
+        <div id="sticker" class="header-area header-area-3 hidden-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="header-center">
+                            <div class="row">
+                                <!-- logo start -->
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="logo">
+                                        <!-- Brand -->
+                                        <a class="navbar-brand page-scroll sticky-logo" href="/">
+                                                                                <span>最佳VPN推荐列表</span>
+                                                                                </a>
+                                    </div>
+                                </div>
+                                <!-- logo end -->
+                                <div class="col-md-9 col-sm-9">
+                                    <!-- mainmenu start -->
+                                    <nav class="navbar navbar-default">
+                                        <div class="collapse navbar-collapse" id="navbar-example">
+                                            <div class="main-menu">
+                                                <ul class="nav navbar-nav navbar-right">
+                                                                                                        <li><a href="/">首页</a></li>
+                                                                                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                                                                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                                                        <li><a href="/news/">新闻资讯</a></li>
+                                                                                                        <li><a href="/client.htm">客户端</a></li>
+                                                                                                    </ul>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                    <!-- mainmenu end -->
+                                </div>
+                                <!-- End column -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-area end -->
+        <!-- mobile-menu-area start -->
+        <div class="mobile-menu-area hidden-lg hidden-md hidden-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mobile-menu">
+                            <div class="logo">
+                                <a href="/">最佳VPN推荐列表</a>
+                            </div>
+                            <nav id="dropdown">
+                                <ul>
+                                                                        <li><a href="/">首页</a></li>
+                                                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li><a href="/news/">新闻资讯</a></li>
+                                                                        <li><a href="/client.htm">客户端</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile-menu-area end -->
+    </header>
+    <!-- header end -->
+    <!-- Start breadcumb Area -->
+    <div class="page-area">
+        <div class="breadcumb-overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcrumb">
+                        <div class="bread-inner">
+                            <div class="section-headline white-headline">
+                                <h1>Kafka如何保证消息的可靠性？</h1>
+                            </div>
+                            <ul class="breadcrumb-bg">
+                                <li class="home-bread"><a href="/">首页</a></li>
+                                <li class="home-bread"><a href="/news/">新闻资讯</a></li>
+                                <li>正文</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End breadcumb Area -->
+    <!-- about-area start -->
+    <div class="about-area bg-gray area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2><a id="Kafka_0" rel="nofollow"></a>Kafka分布式，高可用存储架构</h2> <p>总所周知，Kafka是一个分布式的、可分区的、可复制的消息系统。<br /> 也就是说一个topic中的消息是放在多个partition上的，可是当一台机器宕机后不就会导致部分消息不可消费吗？所以Kafka还做了多副本冗余，每个Partition都可以搞一个副本放在别的机器上，这样某台机器宕机，只不过是Partition其中一个副本丢失。</p> <p>如果某个Partition有多副本的话，Kafka会选举其中一个Parititon副本作为Leader，然后其他的Partition副本是Follower。</p> <p>只有Leader Partition是对外提供读写操作的，Follower Partition就是从Leader Partition同步数据。</p> <p>一旦Leader Partition宕机了，就会选举其他的Follower Partition作为新的Leader Partition对外提供读写服务，这就实现了高可用架构。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220829/0599ffc26af850cab9d5d703fb4763bc.jpg" alt="Kafka如何保证消息的可靠性？"></p> <h2><a id="Kafka_11" rel="nofollow"></a>Kafka写入数据丢失问题</h2> <p>什么情况会导致Kafka中写入数据会丢失呢？</p> <p>大家都知道写入数据都是往某个Partition的Leader写入的，然后那个Partition的Follower会从Leader同步数据，但是这个同步过程是异步的。也就是说如果此时1条数据刚写入Leader Partition1，还没来得及同步给Follower，Leader Partiton1所在机器突然就宕机了的话，此时就会选举Partition1的Follower作为新的Leader对外提供服务，然后用户就读不到刚才写入的那条数据了。因为Partition0的Follower上是没有同步到最新的一条数据的，这个时候就会造成数据丢失的问题。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220829/56cd2e570e9d14efde258e9143476c5e.jpg" alt="Kafka如何保证消息的可靠性？"></p> <h2><a id="KafkaISR_17" rel="nofollow"></a>Kafka的ISR机制</h2> <p>这个机制简单来说，就是会自动给每个Partition维护一个ISR列表，这个列表里一定会有Leader，然后还会包含跟Leader保持同步的Follower。</p> <p>也就是说，只要Leader的某个Follower一直跟他保持数据同步，那么就会存在于ISR列表里。</p> <p>但是如果Follower因为自身发生一些问题，导致不能及时的从Leader同步数据过去，那么这个Follower就会被认为是“out-of-sync”，从ISR列表里移除。</p> <h2><a id="Kafka_25" rel="nofollow"></a>怎么保证Kafka写入的数据不丢失</h2> <ol> <li>每个Partition都至少得有1个Follower在ISR列表里，跟上了Leader的数据同步</li> <li>每次写入数据的时候，都要求至少写入Partition Leader成功，同时还有至少一个ISR里的Follower也写入成功，才算这个写入是成功了</li> </ol> <p>如果不满足上述两个条件，那就一直写入失败，让生产系统不停的尝试重试，直到满足上述两个条件，然后才能认为写入成功</p> <p>这个时候万一leader宕机，就可以切换到那个follower上去，那么Follower上是有刚写入的数据的，此时数据就不会丢失了。</p> <p>关于第二点就需要去配置相应ack参数，才能保证写入Kafka的数据不会丢失。</p> <h2><a id="ack_34" rel="nofollow"></a>ack参数</h2> <p>acks参数，是在Kafka Producer，也就是生产者里设置的。</p> <p>这个参数实际上有三种常见的值可以设置，分别是：0、1 和 all。</p> <ul> <li> <p>ack = 0，意思就是我的Kafka Producer在客户端，只要把消息发送出去，不管那条数据有没有在哪怕Partition Leader上落到磁盘，直接就认为这个消息发送成功了。</p> </li> <li> <p>ack = 1，意思就是说只要Partition Leader接收到消息而且写入本地磁盘了，就认为成功了，不管他其他的Follower有没有同步过去这条消息了。这种设置是kafka默认的设置</p> </li> <li> <p>ack = all，意思就是说，Partition Leader接收到消息之后，还必须要求ISR列表里跟Leader保持同步的那些Follower都要把消息同步过去，才能认为这条消息是写入成功了。</p> </li> </ul> <p>采用这种设置，如果Partition Leader刚接收到了消息，但是结果Follower没有收到消息，此时Leader宕机了，那么客户端会感知到这个消息没发送成功，他会重试再次发送消息过去。</p> <p>此时可能Partition 2的Follower变成Leader了，此时ISR列表里只有最新的这个Follower转变成的Leader了，那么只要这个新的Leader接收消息就算成功了。这样就可以大概率保证发送端发送的消息不会丢失。</p> <h2><a id="_49" rel="nofollow"></a>消费端</h2> <p>唯一可能导致消费者弄丢数据的情况：就是说，你已经消费到了这个消息，然后消费者那边自动提交了 offset，让 Kafka 以为你已经消费好了这个消息，但其实你才刚准备处理这个消息，但是还没处理，消费端就挂了，此时这条消息就丢了。</p> <p>解决方案：<br /> 关闭自动提交 offset，在处理完之后自己手动提交 offset，就可以保证数据不会丢。但是此时确实还是可能会有重复消费，比如你刚处理完，还没提交 offset，结果自己挂了，此时肯定会重复消费一次，自己保证幂等性就好了。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-85722.htm">动物疫苗未冷藏几小时失效了怎么办（动物疫苗能放冰箱吗）</a></p>
+                                        <p>下一个：<a href="/news/article-86447.htm">兰州哪里可以买到鸭子（兰州鸭货批发市场）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-80747.htm" title="宠物粮食销售需要许可证吗 宠物粮食销售需要许可证吗现在">宠物粮食销售需要许可证吗 宠物粮食销售需要许可证吗现在</a></li>
+                        <li class="py-2"><a href="/news/article-85722.htm" title="动物疫苗未冷藏几小时失效了怎么办（动物疫苗能放冰箱吗）">动物疫苗未冷藏几小时失效了怎么办（动物疫苗能放冰箱吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-node-subscribe-links.htm" title="最佳VPN推荐列表 | 3月13日22.7M/S|免费V2ray/Shadowrocket/SSR/Clash免费节点订阅分享">最佳VPN推荐列表 | 3月13日22.7M/S|免费V2ray/Shadowrocket/SSR/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-80746.htm" title="销售兽用疫苗需要什么资质呢知乎（销售兽药疫苗需要什么条件）">销售兽用疫苗需要什么资质呢知乎（销售兽药疫苗需要什么条件）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-19-free-v2ray.htm" title="最佳VPN推荐列表 | 3月19日18.4M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享">最佳VPN推荐列表 | 3月19日18.4M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-67396.htm" title=".NET Core(.NET6)中gRPC注册到Consul详解">.NET Core(.NET6)中gRPC注册到Consul详解</a></li>
+                        <li class="py-2"><a href="/news/article-73931.htm" title="常见动物疫苗有哪些（常见动物疫苗有哪些品种）">常见动物疫苗有哪些（常见动物疫苗有哪些品种）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-20-free-v2ray.htm" title="最佳VPN推荐列表 | 3月20日22.4M/S|免费SSR/Clash/Shadowrocket/V2ray免费节点订阅分享">最佳VPN推荐列表 | 3月20日22.4M/S|免费SSR/Clash/Shadowrocket/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-82857.htm" title="同安流浪猫收养中心（同安流浪狗救助站位置）">同安流浪猫收养中心（同安流浪狗救助站位置）</a></li>
+                        <li class="py-2"><a href="/news/article-83575.htm" title="动物医院的简笔画 动物医院的简笔画怎么画">动物医院的简笔画 动物医院的简笔画怎么画</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about-area end -->
+        <!-- Start Footer bottom Area -->
+    <footer class="footer-3">
+        <div class="footer-area-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="copyright">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">最佳VPN推荐列表 订阅机场节点中文站</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- all js here -->
+    <!-- jquery latest version -->
+    <script src="/assets/website/js/frontend/v2rayngnode/vendor/jquery-1.12.4.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/bootstrap.min.js"></script>
+    <!-- owl.carousel js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/owl.carousel.min.js"></script>
+    <!-- Counter js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.counterup.min.js"></script>
+    <!-- waypoint js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/waypoints.js"></script>
+    <!-- stellar js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.stellar.min.js"></script>
+    <!-- Chart JS -->
+    <script src="/assets/website/js/frontend/v2rayngnode/Chart.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayngnode/Chart.js"></script>
+    <!-- magnific js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/magnific.min.js"></script>
+    <!-- venobox js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/venobox.min.js"></script>
+    <!-- meanmenu js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.meanmenu.js"></script>
+    <!-- Form validator js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/form-validator.min.js"></script>
+    <!-- plugins js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/plugins.js"></script>
+    <!-- main js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
