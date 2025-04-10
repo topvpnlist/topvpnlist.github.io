@@ -1,0 +1,280 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://topvpnlist.github.io/news/article-93044.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>数据库篇：mysql事务原理之MVCC视图+锁</title>
+        <meta name="description" content="前言  数据库的事务特性 数据并发读写时遇到的一致性问题 mysql事务的隔离级别 MVCC的实现原理 锁和隔离级别  关注公众号，一起交流，微信搜一搜: 潜行前行 1 数据库的事务特性  原子性：同" />
+        <link rel="icon" href="/assets/website/img/v2rayngnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="最佳VPN推荐列表 订阅机场节点中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://topvpnlist.github.io/news/article-93044.htm" />
+    <meta property="og:site_name" content="最佳VPN推荐列表 订阅机场节点中文站" />
+    <meta property="og:title" content="数据库篇：mysql事务原理之MVCC视图+锁" />
+    <meta property="og:image" content="https://topvpnlist.github.io/uploads/20241110-1/cac3bfd81abe76d1e49805b28c154bae.webp" />
+        <meta property="og:release_date" content="2025-04-10T08:20:57" />
+    <meta property="og:updated_time" content="2025-04-10T08:20:57" />
+        <meta property="og:description" content="前言  数据库的事务特性 数据并发读写时遇到的一致性问题 mysql事务的隔离级别 MVCC的实现原理 锁和隔离级别  关注公众号，一起交流，微信搜一搜: 潜行前行 1 数据库的事务特性  原子性：同" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="数据库篇：mysql事务原理之MVCC视图+锁">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/bootstrap.min.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/owl.transitions.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/meanmenu.min.css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/icon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/flaticon.css">
+    <!-- magnific css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/magnific.min.css">
+    <!-- venobox css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/venobox.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/responsive.css">
+    <!-- modernizr css -->
+    <script src="/assets/website/js/frontend/v2rayngnode/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2E3PKEC98X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2E3PKEC98X');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <div id="preloader"></div>
+    <header class="header-two">
+        <!-- header-area start -->
+        <div id="sticker" class="header-area header-area-3 hidden-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="header-center">
+                            <div class="row">
+                                <!-- logo start -->
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="logo">
+                                        <!-- Brand -->
+                                        <a class="navbar-brand page-scroll sticky-logo" href="/">
+                                                                                <span>最佳VPN推荐列表</span>
+                                                                                </a>
+                                    </div>
+                                </div>
+                                <!-- logo end -->
+                                <div class="col-md-9 col-sm-9">
+                                    <!-- mainmenu start -->
+                                    <nav class="navbar navbar-default">
+                                        <div class="collapse navbar-collapse" id="navbar-example">
+                                            <div class="main-menu">
+                                                <ul class="nav navbar-nav navbar-right">
+                                                                                                        <li><a href="/">首页</a></li>
+                                                                                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                                                                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                                                        <li><a href="/news/">新闻资讯</a></li>
+                                                                                                        <li><a href="/client.htm">客户端</a></li>
+                                                                                                    </ul>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                    <!-- mainmenu end -->
+                                </div>
+                                <!-- End column -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-area end -->
+        <!-- mobile-menu-area start -->
+        <div class="mobile-menu-area hidden-lg hidden-md hidden-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mobile-menu">
+                            <div class="logo">
+                                <a href="/">最佳VPN推荐列表</a>
+                            </div>
+                            <nav id="dropdown">
+                                <ul>
+                                                                        <li><a href="/">首页</a></li>
+                                                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li><a href="/news/">新闻资讯</a></li>
+                                                                        <li><a href="/client.htm">客户端</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile-menu-area end -->
+    </header>
+    <!-- header end -->
+    <!-- Start breadcumb Area -->
+    <div class="page-area">
+        <div class="breadcumb-overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcrumb">
+                        <div class="bread-inner">
+                            <div class="section-headline white-headline">
+                                <h1>数据库篇：mysql事务原理之MVCC视图+锁</h1>
+                            </div>
+                            <ul class="breadcrumb-bg">
+                                <li class="home-bread"><a href="/">首页</a></li>
+                                <li class="home-bread"><a href="/news/">新闻资讯</a></li>
+                                <li>正文</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End breadcumb Area -->
+    <!-- about-area start -->
+    <div class="about-area bg-gray area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<h2 id="前言">前言</h2> <ul> <li>数据库的事务特性</li> <li>数据并发读写时遇到的一致性问题</li> <li>mysql事务的隔离级别</li> <li>MVCC的实现原理</li> <li>锁和隔离级别</li> </ul> <h2 id="关注公众号一起交流微信搜一搜-潜行前行">关注公众号，一起交流，微信搜一搜: 潜行前行</h2> <h2 id="1-数据库的事务特性">1 数据库的事务特性</h2> <ul> <li>原子性：同一个事务里的操作是一个不可分割的，里面的 sql 要么一起执行，要不执行，是原子性</li> <li>隔离性：数据库系统提供一定的隔离机制，保证事务在不受外部并发操作影响的“独立”环境执行。这意味着事务处理过程中的中间状态对外部是不可见的</li> <li>一致性：在事务开始和完成时，数据约束都必须保持一致状态</li> <li>持久性：事务完成之后，它对于数据的修改是永久性的，即使出现系统崩溃也能够保持持久</li> </ul> <h2 id="2-数据并发读写时遇到的一致性问题">2 数据并发读写时遇到的一致性问题</h2> <ul> <li>脏读（针对未提交） <ul> <li>两个事务同时进行，事务A修改了数据D，且事务A未提交，而事务B却可以读取到未提交的数据D，称之为脏读</li> </ul> </li> <li>脏写 <ul> <li>两个事务同时尝试去更新某一条数据记录时，当事务A更新时，事务A还没提交，事务B就也过来进行更新，覆盖了事务 A 提交的更新数据，这就是脏写。一般要加锁解决</li> </ul> </li> <li>不可重复读（针对已提交的 update） <ul> <li>针对的是已经提交的事务修改的值，同时进行的其他事务给读取到了，事务内多次查询，多次读到的是别的已经提交的事务修改过的值，这就导致不可重复读</li> </ul> </li> <li>幻读（针对已提交的 insert） <ul> <li>事务读取到事务开始之后的插入数据，例如<code>select * from table_user where id between 1 and 10</code>，这条sql本应查出 1~9 的数据，id=10 此时不存在，之后其他事务再插入了一条 id=10 的记录。然后当前事务再次查询则会查出 10 条记录。这就是幻读</li> <li>和不可重复读的区别是，不可重复读的问题是读取最新的修改，幻读是读取到最新的插入数据</li> </ul> </li> </ul> <h2 id="3-mysql事务的隔离级别">3 mysql事务的隔离级别</h2> <ul> <li>读未提交(READ UNCOMITTED，RU)：对应脏读，可以读取到最新未提交的修改</li> <li>读已提交(READ COMMITTED，RC)：一个事务能读取另一个事务已经提交的修改。其避免了脏读，但仍然存在不可重复读和幻读问题</li> <li>可重复读(REPEATABLE READ，RR)：同一个事务中多次读取相同的数据返回的结果是一样的。其避免了脏读和不可重复读问题，但幻读依然存在</li> <li>串行化读(SERIALIZABLE)：事务串行执行。避免了以上所有问题</li> </ul> <h2 id="4-mvcc-的实现原理">4 MVCC 的实现原理</h2> <p>MVCC 全称Multi-Version Concurrency Control，其好处是读不加锁，读写不冲突，并发性能好</p> <h3 id="mvcc-的-undo-log-版本链">MVCC 的 undo log 版本链</h3> <ul> <li>InnoDB中每行数据都有隐藏列，隐藏列中包含了本行数据的事务ID trx_id、指向 undo log 的 roll_pointer 指针<br /><img decoding="async" src="https://img-blog.csdnimg.cn/img_convert/17a99e0ca842fd33994cd54faf73d48a.png" alt="数据库篇：mysql事务原理之MVCC视图+锁"></li> <li>基于undo log的版本链：前面说到每行数据的隐藏列中包含了指向 undo log 的指针 roll_pointer，而每条undo log 也会指向更早版本的undo log，从而形成一条版本链<br /><img decoding="async" src="https://img-blog.csdnimg.cn/img_convert/472a76dc5e75b67ff4d44d9c9f350512.png" alt="数据库篇：mysql事务原理之MVCC视图+锁"></li> </ul> <h3 id="readview">readView</h3> <p>对于使用<code>READ COMMITTED</code>和<code>REPEATABLE READ</code>隔离级别的事务来说，都必须保证读到已提交事务修改过的记录，也就是说假如另一个事务修改了记录但尚未提交，是不能读取最新版本的记录的，其核心问题：需要判断 MVCC 版本链中的哪个版本是当前事务可见的。innodb 的解决方案 readView，readView 包含4个比较重要的属性</p> <ul> <li><code>m_ids</code>：在生成<code>ReadView</code>时，当前系统中活跃的读写事务 id 列表</li> <li><code>min_trx_id</code>：表示在生成<code>ReadView</code>时,当前系统中活跃的读写事务中最小的事务id，也就是<code>m_ids</code>中的最小值</li> <li><code>max_trx_id</code>：表示生成<code>ReadView</code>时系统中应该分配给下一个事务的 id 值</li> <li><code>creator_trx_id</code>：对应生成该<code>ReadView</code> 事务的id</li> </ul> <h5 id="readview-的访问步骤">readView 的访问步骤</h5> <ul> <li>如果被访问版本的<code>trx_id</code>属性值与<code>ReadView</code>中的<code>creator_trx_id</code>值相同，表示当前事务在访问它自己修改过的记录，该版本可以被当前事务访问。</li> <li>如果被访问版本的<code>trx_id</code>属性值小于<code>ReadView</code>中的<code>min_trx_id</code>值，表明生成该版本的事务在当前事务生成<code>ReadView</code>前已经提交，所以该版本可以被当前事务访问。</li> <li>如果被访问版本的<code>trx_id</code>属性值在<code>ReadView</code>的<code>min_trx_id</code>和<code>max_trx_id</code>之间，那就需要判断一下<code>trx_id</code>属性值是不是在<code>m_ids</code>列表中，如果在，说明创建<code>ReadView</code>时生成该版本的事务还是活跃的，该版本不可以被访问；如果不在，说明创建<code>ReadView</code>时生成该版本的事务已经被提交，该版本可以被访问</li> <li>如果被访问版本的<code>trx_id</code>属性值大于或等于<code>ReadView</code>中的<code>max_trx_id</code>值，表明生成该版本的事务在当前事务生成<code>ReadView</code>后才开启，该版本不可被当前事务访问。反之可见</li> <li>如果某个版本的数据对当前事务不可见的话，那就顺着版本链找到下一个版本的数据（undo log）。如果最后一个版本都不可见的话，那么就意味着该条记录对该事务完全不可见</li> </ul> <h3 id="读已提交和可重复读利用-readview-实现">读已提交和可重复读利用 ReadView 实现</h3> <ul> <li>快照读：读取的是快照版本，也就是历史版本 readView 里的数据 ，普通的 SELECT 就是快照读</li> <li>当前读：读取的是最新版本，UPDATE、DELETE、INSERT、SELECT ...  LOCK IN SHARE MODE、SELECT ... FOR UPDATE 是当前读，需要加锁</li> <li><code>READ UNCOMMITTED</code>：直接读取记录的最新版本就好</li> <li><code>READ COMMITTED</code>：每次读取数据前都生成一个ReadView <ul> <li>针对当前读，RC 隔离级别保证对读取到的记录加锁 (记录锁)，存在幻读现象</li> </ul> </li> <li><code>REPEATABLE READ</code>：在第一次读取数据时生成一个ReadView <ul> <li>针对当前读，RR 隔离级别保证对读取到的记录加锁 (记录锁)，同时保证对读取的范围加锁，新的满足查询条件的记录不能够插入 (间隙锁)，不存在幻读现象</li> <li>RR 从严格意义上并没解决幻读。如果事务一开始先 update 一条看不见的数据（前面没有当前读操作），再查询，则会多查出这条记录，此时也是发生了幻读</li> </ul> </li> </ul> <h2 id="5-锁和隔离级别">5 锁和隔离级别</h2> <ul> <li>RC、RR、SERIALIZABLE 级别的隔离，当前读都会需要借助锁实现</li> <li>MVCC 能实现多数情况避免幻读，但不能完全避免幻读的发生</li> <li>RR 隔离级别需要先 select ... for update 加锁进行当前读操作，才能防止幻读</li> <li>对于<code>SERIALIZABLE</code>隔离级别的事务来说，<code>InnoDB</code>规定使用加锁的方式来访问记录</li> </ul> <h2 id="欢迎指正文中错误">欢迎指正文中错误</h2> <h2 id="参考文章">参考文章</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/crazylqy/p/7611069.html"  target="_blank" rel="nofollow">Mysql加锁过程详解</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jianshu.com/p/904f52bde904"  target="_blank" rel="nofollow">探索Mysql锁机制(二)</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/kismetv/p/10331633.html"  target="_blank" rel="nofollow">深入学习MySQL事务：ACID特性的实现原理</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/cjsblog/p/8365921.html"  target="_blank" rel="nofollow">MySQL事务隔离级别的实现原理</a></li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-93043.htm">如何在 C# 循环中捕获局部变量？</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-subscribe-node.htm" title="最佳VPN推荐列表 | 3月6日20.4M/S|免费Clash/V2ray/SSR/Shadowrocket免费节点订阅分享">最佳VPN推荐列表 | 3月6日20.4M/S|免费Clash/V2ray/SSR/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-66762.htm" title="RequestBody多个参数Map实现以及前端json传参方式">RequestBody多个参数Map实现以及前端json传参方式</a></li>
+                        <li class="py-2"><a href="/news/article-67397.htm" title=".NET混合开发解决方案4 WebView2的线程模型">.NET混合开发解决方案4 WebView2的线程模型</a></li>
+                        <li class="py-2"><a href="/news/article-84289.htm" title="全国十大名牌兽药厂家（中国十大名牌兽药厂家）">全国十大名牌兽药厂家（中国十大名牌兽药厂家）</a></li>
+                        <li class="py-2"><a href="/news/article-73930.htm" title="广州哪里有宠物领养中心 广州哪里有宠物领养中心啊">广州哪里有宠物领养中心 广州哪里有宠物领养中心啊</a></li>
+                        <li class="py-2"><a href="/news/article-66134.htm" title="实践搭建Redis一主两从三哨兵">实践搭建Redis一主两从三哨兵</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-9-free-subscribe-node.htm" title="最佳VPN推荐列表 | 3月9日19M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享">最佳VPN推荐列表 | 3月9日19M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-free-subscribe-node.htm" title="最佳VPN推荐列表 | 3月21日20.5M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享">最佳VPN推荐列表 | 3月21日20.5M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-80747.htm" title="宠物粮食销售需要许可证吗 宠物粮食销售需要许可证吗现在">宠物粮食销售需要许可证吗 宠物粮食销售需要许可证吗现在</a></li>
+                        <li class="py-2"><a href="/news/article-74598.htm" title="扬州宠物医院营业时间电话（扬州宠物医院营业时间电话查询）">扬州宠物医院营业时间电话（扬州宠物医院营业时间电话查询）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about-area end -->
+        <!-- Start Footer bottom Area -->
+    <footer class="footer-3">
+        <div class="footer-area-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="copyright">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">最佳VPN推荐列表 订阅机场节点中文站</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- all js here -->
+    <!-- jquery latest version -->
+    <script src="/assets/website/js/frontend/v2rayngnode/vendor/jquery-1.12.4.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/bootstrap.min.js"></script>
+    <!-- owl.carousel js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/owl.carousel.min.js"></script>
+    <!-- Counter js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.counterup.min.js"></script>
+    <!-- waypoint js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/waypoints.js"></script>
+    <!-- stellar js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.stellar.min.js"></script>
+    <!-- Chart JS -->
+    <script src="/assets/website/js/frontend/v2rayngnode/Chart.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayngnode/Chart.js"></script>
+    <!-- magnific js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/magnific.min.js"></script>
+    <!-- venobox js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/venobox.min.js"></script>
+    <!-- meanmenu js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.meanmenu.js"></script>
+    <!-- Form validator js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/form-validator.min.js"></script>
+    <!-- plugins js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/plugins.js"></script>
+    <!-- main js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
