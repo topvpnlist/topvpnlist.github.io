@@ -174,6 +174,7 @@
                   				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <h2><a id="_0" rel="nofollow"></a>效果图</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220608/429a82df17da8d95e1dee9ebf29320d7.jpg" alt="VUE excel 特殊表格处理"></p> <h2><a id="code_3" rel="nofollow"></a>code</h2> <pre><code>&lt;script&gt; import XLSX from 'xlsx' export default {   data () {     return {       dialogVisible: false,       monitorData: [],     }   },   methods: {     exportExcel () {       // header1 一行九列       // header2 第二行2列       // header3 第三行9列       let wsMerge = [         {           s: { r: 0, c: 0 },           e: { r: 0, c: 8 }         },         {           s: { r: 1, c: 0 },           e: { r: 1, c: 2 }         },         {           s: { r: 1, c: 3 },           e: { r: 1, c: 5 }         },         {           s: { r: 1, c: 6 },           e: { r: 1, c: 8 }         }       ]       let headers = [         [this.monitorData[0].title],         ['人数', '', '', '次数', '', '', '同时在线峰值', '', ''],         ['总共', 'APP', 'PC', '总共', 'APP', 'PC', '总共', 'APP', 'PC']       ]       let filterVal = ['count', 'count', 'count', 'count', 'count', 'count', 'count', 'count', 'count']       let list = this.monitorData       let data = this.formatJson(filterVal, list)       let ws = XLSX.utils.aoa_to_sheet(headers)       XLSX.utils.sheet_add_aoa(ws, data, { origin: 'A4' })       let wb = XLSX.utils.book_new()       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1')       ws['!merges'] = wsMerge       XLSX.writeFile(wb, new Date().getTime() + '.xlsx')     },     formatJson (filterVal, jsonData) {       return jsonData.map(v =&gt; filterVal.map(j =&gt; {         // 个性化数据处理         return v[j]       }))     }   } } &lt;/script&gt;</code></pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-96065.htm">SpringBoot中的Mysql时间类型dateTime格式转换配置</a></p>
+                                        <p>下一个：<a href="/news/article-96809.htm">济南宠物狗领养（济南狗狗领养免费平台）</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -183,16 +184,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-83575.htm" title="动物医院的简笔画 动物医院的简笔画怎么画">动物医院的简笔画 动物医院的简笔画怎么画</a></li>
-                        <li class="py-2"><a href="/news/article-69968.htm" title="动物疫苗的种类及使用方法有哪些英语翻译（动物疫苗的种类及使用方法有哪些英语翻译成中文）">动物疫苗的种类及使用方法有哪些英语翻译（动物疫苗的种类及使用方法有哪些英语翻译成中文）</a></li>
-                        <li class="py-2"><a href="/news/article-82857.htm" title="同安流浪猫收养中心（同安流浪狗救助站位置）">同安流浪猫收养中心（同安流浪狗救助站位置）</a></li>
-                        <li class="py-2"><a href="/news/article-91478.htm" title="宠物疫苗批号有假的吗（宠物疫苗生产批号）">宠物疫苗批号有假的吗（宠物疫苗生产批号）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-4-free-subscribe-node.htm" title="最佳VPN推荐列表 | 3月4日22.7M/S|免费Clash/V2ray/Shadowrocket/SSR免费节点订阅分享">最佳VPN推荐列表 | 3月4日22.7M/S|免费Clash/V2ray/Shadowrocket/SSR免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-71281.htm" title="1688一键铺货到拼多多怎么赚钱（1688一键铺货到拼多多手机版）">1688一键铺货到拼多多怎么赚钱（1688一键铺货到拼多多手机版）</a></li>
-                        <li class="py-2"><a href="/news/article-72598.htm" title="南京宠物猫领养中心电话号码查询（南京宠物领养中心在哪）">南京宠物猫领养中心电话号码查询（南京宠物领养中心在哪）</a></li>
-                        <li class="py-2"><a href="/news/article-94552.htm" title="python调用c代码">python调用c代码</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-4-1-free-node-subscribe.htm" title="最佳VPN推荐列表 | 4月1日22.9M/S|免费Shadowrocket/Clash/V2ray/SSR免费节点订阅分享">最佳VPN推荐列表 | 4月1日22.9M/S|免费Shadowrocket/Clash/V2ray/SSR免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-87160.htm" title="小动物疫苗注射证明在哪里办理手续（小动物疫苗本）">小动物疫苗注射证明在哪里办理手续（小动物疫苗本）</a></li>
+                        <li class="py-2"><a href="/news/article-67396.htm" title=".NET Core(.NET6)中gRPC注册到Consul详解">.NET Core(.NET6)中gRPC注册到Consul详解</a></li>
+                        <li class="py-2"><a href="/news/article-76643.htm" title="宠物粮食代加工骗局（宠物粮食加工厂需要投资多少钱）">宠物粮食代加工骗局（宠物粮食加工厂需要投资多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-80747.htm" title="宠物粮食销售需要许可证吗 宠物粮食销售需要许可证吗现在">宠物粮食销售需要许可证吗 宠物粮食销售需要许可证吗现在</a></li>
+                        <li class="py-2"><a href="/news/article-78691.htm" title="动物注射疫苗注意事项及禁忌症是什么（动物疫苗使用注意事项）">动物注射疫苗注意事项及禁忌症是什么（动物疫苗使用注意事项）</a></li>
+                        <li class="py-2"><a href="/news/article-69969.htm" title="狗粮制造机器（狗粮制造机一体机）">狗粮制造机器（狗粮制造机一体机）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-subscribe-node.htm" title="最佳VPN推荐列表 | 3月6日20.4M/S|免费Clash/V2ray/SSR/Shadowrocket免费节点订阅分享">最佳VPN推荐列表 | 3月6日20.4M/S|免费Clash/V2ray/SSR/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-73930.htm" title="广州哪里有宠物领养中心 广州哪里有宠物领养中心啊">广州哪里有宠物领养中心 广州哪里有宠物领养中心啊</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-free-v2ray-subscribe.htm" title="最佳VPN推荐列表 | 4月11日21.9M/S|免费V2ray/Shadowrocket/Clash/SSR免费节点订阅分享">最佳VPN推荐列表 | 4月11日21.9M/S|免费V2ray/Shadowrocket/Clash/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-82136.htm" title="[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈">[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-free-v2ray.htm" title="最佳VPN推荐列表 | 3月5日22.2M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享">最佳VPN推荐列表 | 3月5日22.2M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享</a></li>
                     </ul>
     </div>
 </div>
@@ -204,7 +205,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+                <h4><span class="badge" style="float: right;">45</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
