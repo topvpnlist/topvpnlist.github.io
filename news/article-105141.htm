@@ -1,0 +1,284 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://topvpnlist.github.io/news/article-105141.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Spring boot整合JPA</title>
+        <meta name="description" content="1.pom.xml添加jpa和数据库依赖包 &lt;dependency&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework" />
+        <link rel="icon" href="/assets/website/img/v2rayngnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="最佳VPN推荐列表 订阅机场节点中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://topvpnlist.github.io/news/article-105141.htm" />
+    <meta property="og:site_name" content="最佳VPN推荐列表 订阅机场节点中文站" />
+    <meta property="og:title" content="Spring boot整合JPA" />
+    <meta property="og:image" content="https://topvpnlist.github.io/uploads/20241110-1/ca65b87e212208dbf91f0a11f45134df.webp" />
+        <meta property="og:release_date" content="2025-04-26T07:41:27" />
+    <meta property="og:updated_time" content="2025-04-26T07:41:27" />
+        <meta property="og:description" content="1.pom.xml添加jpa和数据库依赖包 &lt;dependency&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring boot整合JPA">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/bootstrap.min.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/owl.transitions.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/meanmenu.min.css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/icon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/flaticon.css">
+    <!-- magnific css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/magnific.min.css">
+    <!-- venobox css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/venobox.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/responsive.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- modernizr css -->
+    <script src="/assets/website/js/frontend/v2rayngnode/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2E3PKEC98X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2E3PKEC98X');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <div id="preloader"></div>
+    <header class="header-two">
+        <!-- header-area start -->
+        <div id="sticker" class="header-area header-area-3 hidden-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="header-center">
+                            <div class="row">
+                                <!-- logo start -->
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="logo">
+                                        <!-- Brand -->
+                                        <a class="navbar-brand page-scroll sticky-logo" href="/">
+                                                                                <span>最佳VPN推荐列表</span>
+                                                                                </a>
+                                    </div>
+                                </div>
+                                <!-- logo end -->
+                                <div class="col-md-9 col-sm-9">
+                                    <!-- mainmenu start -->
+                                    <nav class="navbar navbar-default">
+                                        <div class="collapse navbar-collapse" id="navbar-example">
+                                            <div class="main-menu">
+                                                <ul class="nav navbar-nav navbar-right">
+                                                                                                        <li><a href="/">首页</a></li>
+                                                                                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                                                                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                                                        <li><a href="/news/">新闻资讯</a></li>
+                                                                                                        <li><a href="/client.htm">客户端</a></li>
+                                                                                                    </ul>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                    <!-- mainmenu end -->
+                                </div>
+                                <!-- End column -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-area end -->
+        <!-- mobile-menu-area start -->
+        <div class="mobile-menu-area hidden-lg hidden-md hidden-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mobile-menu">
+                            <div class="logo">
+                                <a href="/">最佳VPN推荐列表</a>
+                            </div>
+                            <nav id="dropdown">
+                                <ul>
+                                                                        <li><a href="/">首页</a></li>
+                                                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li><a href="/news/">新闻资讯</a></li>
+                                                                        <li><a href="/client.htm">客户端</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile-menu-area end -->
+    </header>
+    <!-- header end -->
+    <!-- Start breadcumb Area -->
+    <div class="page-area">
+        <div class="breadcumb-overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcrumb">
+                        <div class="bread-inner">
+                            <div class="section-headline white-headline">
+                                <h1>Spring boot整合JPA</h1>
+                            </div>
+                            <ul class="breadcrumb-bg">
+                                <li class="home-bread"><a href="/">首页</a></li>
+                                <li class="home-bread"><a href="/news/">新闻资讯</a></li>
+                                <li>正文</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End breadcumb Area -->
+    <!-- about-area start -->
+    <div class="about-area bg-gray area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="htmledit_views"> <p>1.pom.xml添加jpa和数据库依赖包</p> <pre><code class="language-html">&lt;dependency&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;com.oracle&lt;/groupId&gt;     &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;     &lt;version&gt;11.2.0.3&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p>2.application.properties配置数据库连接池</p> <pre><code class="language-html">spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl spring.datasource.username=jdjk spring.datasource.password=jdjk spring.datasource.initialSize=20   spring.datasource.minIdle=20   spring.datasource.maxActive=100     spring.datasource.maxWait=60000 spring.jpa.database-platform=org.hibernate.dialect.OracleDialect</code></pre> <p>3.创建表映射实体类</p> <pre><code class="language-html">import javax.persistence.Entity; import javax.persistence.Id; import javax.persistence.Table;  @Entity @Table(name="t_sys_jkconfig") public class T_SYS_JKCONFIG{  	private String xh; 	private String server_ip; 	private String server_name; 	private String server_action; 	 	@Id 	public String getXh() { 		return xh; 	} 	public void setXh(String xh) { 		this.xh = xh; 	} 	public String getServer_ip() { 		return server_ip; 	} 	public void setServer_ip(String server_ip) { 		this.server_ip = server_ip; 	} 	public String getServer_name() { 		return server_name; 	} 	public void setServer_name(String server_name) { 		this.server_name = server_name; 	} 	public String getServer_action() { 		return server_action; 	} 	public void setServer_action(String server_action) { 		this.server_action = server_action; 	} }</code></pre> <p>4.创建接口继承JpaRepository</p> <pre><code class="language-html">import java.util.List; import java.util.Map;  import org.springframework.data.jpa.repository.JpaRepository; import org.springframework.data.jpa.repository.Modifying; import org.springframework.data.jpa.repository.Query; import org.springframework.data.repository.query.Param; import org.springframework.stereotype.Repository; import org.springframework.transaction.annotation.Transactional;  import cn.com.highset.goexpo.bqd.bean.T_SYS_JKCONFIG;  @Repository @Transactional public interface IBaseDao extends JpaRepository&lt;T_SYS_JKCONFIG, String&gt; {  	 	T_SYS_JKCONFIG findByXh(String xh); 	 	//返回对象 	@Query(value = "select * from t_sys_jkconfig where server_ip = :ip", nativeQuery = true) 	List&lt;T_SYS_JKCONFIG&gt; getByIp(@Param("ip") String ip); 	 	//返回map 	@Query(value = "select server_ip from t_sys_jkconfig where server_ip = :ip", nativeQuery = true) 	List&lt;Map&gt; getMapByIp(@Param("ip") String ip);  	@Modifying 	@Query(value = "update t_sys_jkconfig set server_ip = :ip where xh = :xh", nativeQuery = true) 	void updateByXh(@Param("ip") String ip,@Param("xh") String xh); }</code></pre> <p>5.在Controller中调用方法</p> <pre><code class="language-html">import java.util.List; import java.util.Map;  import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.Controller; import org.springframework.ui.Model; import org.springframework.web.bind.annotation.RequestMapping;  import cn.com.highset.goexpo.dao.IBaseDao;  @Controller public class IndexController { 	 	@Autowired 	private IBaseDao baseDao; 	 	@RequestMapping("/") 	public String root(Model model) { 		//新增 		T_SYS_JKCONFIG t = new T_SYS_JKCONFIG(); 		t.setXh("111"); 		t.setServer_ip("222"); 		t.setServer_name("333"); 		t.setServer_action("444"); 		baseDao.save(t); 		//删除 		T_SYS_JKCONFIG jkconfig = baseDao.findByXh("111"); 		baseDao.delete(jkconfig); 		//修改 		baseDao.updateByXh("12345", "1"); 		//查询 		List&lt;Map&gt; list =  baseDao.getMapByIp("192.168.1.120"); 		for(Map t : list){ 			System.out.println(t.get("xh")); 		} 		model.addAttribute("list", list); 		return "home"; 	} }</code></pre> <p>6.在启动类Application中添加扫描注解</p> <pre><code class="language-html">import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.boot.autoconfigure.domain.EntityScan; import org.springframework.data.jpa.repository.config.EnableJpaRepositories; import org.springframework.web.bind.annotation.RestController;  @RestController @SpringBootApplication @EnableJpaRepositories(basePackages = "xxx.xxx.dao") @EntityScan("xxx.xxx.bean") public class Application {  	public static void main(String[] args) { 		SpringApplication.run(Application.class, args); 	} }</code></pre> <p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-104177.htm">动物防疫疫苗与接种的关系是什么（动物疫苗的重要性）</a></p>
+                                        <p>下一个：<a href="/news/article-105142.htm">宠物粮食批发网站有哪些平台推荐（宠物粮食批发网站有哪些平台推荐一下）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-free-v2ray.htm" title="最佳VPN推荐列表 | 3月7日22.7M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">最佳VPN推荐列表 | 3月7日22.7M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-7-node-share.htm" title="最佳VPN推荐列表 | 4月7日22M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享">最佳VPN推荐列表 | 4月7日22M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-84289.htm" title="全国十大名牌兽药厂家（中国十大名牌兽药厂家）">全国十大名牌兽药厂家（中国十大名牌兽药厂家）</a></li>
+                        <li class="py-2"><a href="/news/article-93799.htm" title="免费领养宠物猫的平台（免费领养宠物猫的网站）">免费领养宠物猫的平台（免费领养宠物猫的网站）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-free-v2ray.htm" title="最佳VPN推荐列表 | 4月6日20.6M/S|免费V2ray/Shadowrocket/SSR/Clash免费节点订阅分享">最佳VPN推荐列表 | 4月6日20.6M/S|免费V2ray/Shadowrocket/SSR/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-3-free-v2ray-subscribe.htm" title="最佳VPN推荐列表 | 4月3日20.7M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">最佳VPN推荐列表 | 4月3日20.7M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-19-free-v2ray.htm" title="最佳VPN推荐列表 | 3月19日18.4M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享">最佳VPN推荐列表 | 3月19日18.4M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-free-v2ray.htm" title="最佳VPN推荐列表 | 3月5日22.2M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享">最佳VPN推荐列表 | 3月5日22.2M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-95314.htm" title="【linux】nohup运行jar包出现nohup: redirecting stderr to stdout解决办法">【linux】nohup运行jar包出现nohup: redirecting stderr to stdout解决办法</a></li>
+                        <li class="py-2"><a href="/news/article-104177.htm" title="动物防疫疫苗与接种的关系是什么（动物疫苗的重要性）">动物防疫疫苗与接种的关系是什么（动物疫苗的重要性）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">81</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about-area end -->
+        <!-- Start Footer bottom Area -->
+    <footer class="footer-3">
+        <div class="footer-area-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="copyright">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">最佳VPN推荐列表 订阅机场节点中文站</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- all js here -->
+    <!-- jquery latest version -->
+    <script src="/assets/website/js/frontend/v2rayngnode/vendor/jquery-1.12.4.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/bootstrap.min.js"></script>
+    <!-- owl.carousel js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/owl.carousel.min.js"></script>
+    <!-- Counter js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.counterup.min.js"></script>
+    <!-- waypoint js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/waypoints.js"></script>
+    <!-- stellar js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.stellar.min.js"></script>
+    <!-- Chart JS -->
+    <script src="/assets/website/js/frontend/v2rayngnode/Chart.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayngnode/Chart.js"></script>
+    <!-- magnific js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/magnific.min.js"></script>
+    <!-- venobox js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/venobox.min.js"></script>
+    <!-- meanmenu js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.meanmenu.js"></script>
+    <!-- Form validator js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/form-validator.min.js"></script>
+    <!-- plugins js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/plugins.js"></script>
+    <!-- main js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
