@@ -1,0 +1,284 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://topvpnlist.github.io/news/article-108462.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>RBAC-基于角色的访问控制详解</title>
+        <meta name="description" content="RBAC-基于角色的访问控制  什么是RBAC 概念 RBAC  是基于角色的访问控制（Role-Based Access Control ）在 RBAC  中，权限与角色相关联，用户通过成为适当角色" />
+        <link rel="icon" href="/assets/website/img/v2rayngnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="最佳VPN推荐列表 订阅机场节点中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://topvpnlist.github.io/news/article-108462.htm" />
+    <meta property="og:site_name" content="最佳VPN推荐列表 订阅机场节点中文站" />
+    <meta property="og:title" content="RBAC-基于角色的访问控制详解" />
+    <meta property="og:image" content="https://topvpnlist.github.io/uploads/20241110-1/5d51edc2748b8b386c2c1f0c052ab44e.webp" />
+        <meta property="og:release_date" content="2025-04-30T09:35:47" />
+    <meta property="og:updated_time" content="2025-04-30T09:35:47" />
+        <meta property="og:description" content="RBAC-基于角色的访问控制  什么是RBAC 概念 RBAC  是基于角色的访问控制（Role-Based Access Control ）在 RBAC  中，权限与角色相关联，用户通过成为适当角色" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="RBAC-基于角色的访问控制详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/bootstrap.min.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/owl.transitions.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/meanmenu.min.css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/icon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/flaticon.css">
+    <!-- magnific css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/magnific.min.css">
+    <!-- venobox css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/venobox.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/assets/website/css/v2rayngnode/responsive.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- modernizr css -->
+    <script src="/assets/website/js/frontend/v2rayngnode/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2E3PKEC98X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2E3PKEC98X');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <div id="preloader"></div>
+    <header class="header-two">
+        <!-- header-area start -->
+        <div id="sticker" class="header-area header-area-3 hidden-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="header-center">
+                            <div class="row">
+                                <!-- logo start -->
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="logo">
+                                        <!-- Brand -->
+                                        <a class="navbar-brand page-scroll sticky-logo" href="/">
+                                                                                <span>最佳VPN推荐列表</span>
+                                                                                </a>
+                                    </div>
+                                </div>
+                                <!-- logo end -->
+                                <div class="col-md-9 col-sm-9">
+                                    <!-- mainmenu start -->
+                                    <nav class="navbar navbar-default">
+                                        <div class="collapse navbar-collapse" id="navbar-example">
+                                            <div class="main-menu">
+                                                <ul class="nav navbar-nav navbar-right">
+                                                                                                        <li><a href="/">首页</a></li>
+                                                                                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                                                                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                                                        <li><a href="/news/">新闻资讯</a></li>
+                                                                                                        <li><a href="/client.htm">客户端</a></li>
+                                                                                                    </ul>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                    <!-- mainmenu end -->
+                                </div>
+                                <!-- End column -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-area end -->
+        <!-- mobile-menu-area start -->
+        <div class="mobile-menu-area hidden-lg hidden-md hidden-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mobile-menu">
+                            <div class="logo">
+                                <a href="/">最佳VPN推荐列表</a>
+                            </div>
+                            <nav id="dropdown">
+                                <ul>
+                                                                        <li><a href="/">首页</a></li>
+                                                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li><a href="/news/">新闻资讯</a></li>
+                                                                        <li><a href="/client.htm">客户端</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile-menu-area end -->
+    </header>
+    <!-- header end -->
+    <!-- Start breadcumb Area -->
+    <div class="page-area">
+        <div class="breadcumb-overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcrumb">
+                        <div class="bread-inner">
+                            <div class="section-headline white-headline">
+                                <h1>RBAC-基于角色的访问控制详解</h1>
+                            </div>
+                            <ul class="breadcrumb-bg">
+                                <li class="home-bread"><a href="/">首页</a></li>
+                                <li class="home-bread"><a href="/news/">新闻资讯</a></li>
+                                <li>正文</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End breadcumb Area -->
+    <!-- about-area start -->
+    <div class="about-area bg-gray area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div class="toc"> <div class="toc-container-header"><span style="font-size: 2em;">RBAC-基于角色的访问控制</span></div> </div> <h2 id="什么是rbac">什么是RBAC</h2> <h3 id="概念">概念</h3> <p>RBAC  是基于角色的访问控制（Role-Based Access Control ）在 RBAC  中，权限与角色相关联，用户通过成为适当角色的成员而得到这些角色的权限。这就极大地简化了权限的管理。这样管理都是层级相互依赖的，权限赋予给角色，而把角色又赋予用户，这样的权限设计很清楚，管理起来很方便。</p> <p>前面我们说到三大认证，比如权限，普通用户和管理员能够操作的接口就不一样，比如我们常见的视频软件，不开会员能看的视频寥寥无几，这就是权限的应用，但是这站在公司的角度是对外的权限，比如后台管理对公司内使用，公司内部的权限该如何分配？就用到了RBAC</p> <p>对外权限针对用户：普通注册用户，会员，超级会员····</p> <p>对内权限公司内部：使用RBAC的权限控制</p> <pre><code class="language-python">比如公司内部有开发部、财政部、市场部、人事部、运营部、总裁办··· 这写部门的权限是不同的，比如人事部有招人的权力，开发部有查看修改提交代码的权力···  所以通过将权限和角色(部门)绑定，而角色又赋予用户，所以该部门有多大的权力，部门下的员工就有什么样的权力···</code></pre> <p><strong>总体而言，RBAC针对公司内部项目，后台管理开发居多</strong></p> <h2 id="django的内置rbac六表">Django的内置RBAC(六表)</h2> <h3 id="图解">图解</h3> <p><strong>权限三表</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/940d89fa15c8efb4cc5e79c5af8f67cc.jpg" alt="RBAC-基于角色的访问控制详解"></p> <p><strong>权限六表</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/df4f97aa0a4de2748296c2649b8dd07f.jpg" alt="RBAC-基于角色的访问控制详解"></p> <p></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ef3de9fe4b09aed04ceb13296aa9dfb3.jpg" alt="RBAC-基于角色的访问控制详解"></p> <h3 id="表关系">表关系</h3> <blockquote> <p>django的admin自带rbac权限管理（表设计完成权限管理），6张表</p> </blockquote> <p><strong>用户表、组表(角色、部门)、权限表</strong>   ---&gt;  三张</p> <p><strong>用户和组多对多关系，存在中间表</strong></p> <p><strong>用户和权限多对多关系，存在中间表</strong></p> <p><strong>组和权限多对多关系，存在中间表</strong>  -----&gt; 三张</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e2407a29b950ef0c2e3bf96ec0cd12e7.jpg" alt="RBAC-基于角色的访问控制详解"></p> <h2 id="实操">实操</h2> <p><strong>models.py</strong></p> <pre><code class="language-python">from django.db import models    class Book(models.Model):     name = models.CharField(max_length=32)     price = models.DecimalField(max_digits=5, decimal_places=2)     author = models.CharField(max_length=32)      # 对象描述，显示书名     def __str__(self):         return self.name      # 表名中文解释     class Meta:         '''         verbose_name 顾名思义 起一个复杂点的名称，一般用来作中文解释          verbose_name_plural 顾名思义是一个复数名称，因中文没有复数         但django有时又会将用户的驼峰命名拆成单个词，给最后的词加复数，和用户的本义不符，         因些加了这样一个选项来处理尴尬 比如 Blog Articals 或是 分类管理s         '''         # verbose_name = '图书表'         verbose_name_plural = '图书表'</code></pre> <p><strong>admin</strong></p> <pre><code class="language-python">from django.contrib import admin  from .models import Book  admin.site.register(Book)</code></pre> <h2 id="登录admin操作">登录admin操作</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/6b2269114faa2f69d820658057c8ceb3.jpg" alt="RBAC-基于角色的访问控制详解"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/3ebfb2f842127d7e5ca7f6d67b679aa3.jpg" alt="RBAC-基于角色的访问控制详解"></p> <h3 id="普通用户只能查看">普通用户只能查看</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f64ccb43d6a7b1d1b0ffdb695ee564ab.jpg" alt="RBAC-基于角色的访问控制详解"></p> <h3 id="添加到组里增加修改权限">添加到组里，增加修改权限</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/5c40fb6be5ab7fb19a7d98137735ffb4.jpg" alt="RBAC-基于角色的访问控制详解"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8ef8e938133ce895f9970d819dd4d211.jpg" alt="RBAC-基于角色的访问控制详解"></p> <p> ![image](https://img2022.cnblogs.com/blog/2608072/202204/2608072-20220407225423670-1053333751.png)</p> <h2 id="admin二次开发">admin二次开发</h2> <blockquote> <p>初始样式</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8c280856d468b508dc673a911f6bc2f0.jpg" alt="RBAC-基于角色的访问控制详解"></p> <p><strong>admin.py</strong></p> <pre><code class="language-python">from django.contrib import admin  from .models import Book   # Register your models here.  class BookAdmin(admin.ModelAdmin):     # 设置列表可显示的字段     list_display = ('name', 'price', 'author')     # 设置过滤选项     list_filter = ('name', 'price')   admin.site.register(Book, BookAdmin)</code></pre> <blockquote> <p>二次开发后的样式</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f02d943b2021c44e33054d647d19e0c6.jpg" alt="RBAC-基于角色的访问控制详解"></p> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-108461.htm">Java中的守护线程与用户线程</a></p>
+                                        <p>下一个：<a href="/news/article-109307.htm">win11系统怎么清理c盘垃圾文件</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-4-30-free-v2ray-subscribe.htm" title="最佳VPN推荐列表 | 4月30日20.3M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享">最佳VPN推荐列表 | 4月30日20.3M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-28-free-subscribe-node.htm" title="最佳VPN推荐列表 | 4月28日20.8M/S|免费Shadowrocket/Clash/V2ray/SSR免费节点订阅分享">最佳VPN推荐列表 | 4月28日20.8M/S|免费Shadowrocket/Clash/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-96811.htm" title="东北农业动物医院在哪个位置呀（东北农业动物医院在哪个位置呀）">东北农业动物医院在哪个位置呀（东北农业动物医院在哪个位置呀）</a></li>
+                        <li class="py-2"><a href="/news/article-90822.htm" title="沈阳宠物用品店（沈阳宠物用品批发在哪）">沈阳宠物用品店（沈阳宠物用品批发在哪）</a></li>
+                        <li class="py-2"><a href="/news/article-88609.htm" title="宠物猫打疫苗多少钱一针_养猫注意事项（给宠物猫打疫苗需要多少钱）">宠物猫打疫苗多少钱一针_养猫注意事项（给宠物猫打疫苗需要多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-24-free-node-subscribe.htm" title="最佳VPN推荐列表 | 4月24日22.3M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">最佳VPN推荐列表 | 4月24日22.3M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-96809.htm" title="济南宠物狗领养（济南狗狗领养免费平台）">济南宠物狗领养（济南狗狗领养免费平台）</a></li>
+                        <li class="py-2"><a href="/news/article-108461.htm" title="Java中的守护线程与用户线程">Java中的守护线程与用户线程</a></li>
+                        <li class="py-2"><a href="/news/article-88608.htm" title="东北农业大学宠物医院地址电话（东北农业大学动物医院地址）">东北农业大学宠物医院地址电话（东北农业大学动物医院地址）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-19-free-v2ray.htm" title="最佳VPN推荐列表 | 4月19日22.5M/S|免费SSR/Clash/V2ray/Shadowrocket免费节点订阅分享">最佳VPN推荐列表 | 4月19日22.5M/S|免费SSR/Clash/V2ray/Shadowrocket免费节点订阅分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about-area end -->
+        <!-- Start Footer bottom Area -->
+    <footer class="footer-3">
+        <div class="footer-area-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="copyright">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">最佳VPN推荐列表 订阅机场节点中文站</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- all js here -->
+    <!-- jquery latest version -->
+    <script src="/assets/website/js/frontend/v2rayngnode/vendor/jquery-1.12.4.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/bootstrap.min.js"></script>
+    <!-- owl.carousel js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/owl.carousel.min.js"></script>
+    <!-- Counter js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.counterup.min.js"></script>
+    <!-- waypoint js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/waypoints.js"></script>
+    <!-- stellar js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.stellar.min.js"></script>
+    <!-- Chart JS -->
+    <script src="/assets/website/js/frontend/v2rayngnode/Chart.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayngnode/Chart.js"></script>
+    <!-- magnific js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/magnific.min.js"></script>
+    <!-- venobox js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/venobox.min.js"></script>
+    <!-- meanmenu js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/jquery.meanmenu.js"></script>
+    <!-- Form validator js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/form-validator.min.js"></script>
+    <!-- plugins js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/plugins.js"></script>
+    <!-- main js -->
+    <script src="/assets/website/js/frontend/v2rayngnode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
